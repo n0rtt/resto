@@ -4,7 +4,7 @@ import './cart-table.scss';
 const CartTable = () => {
     return (
         <>
-            <div className="cart__title">Ваш заказ:</div>
+            <div className="cart__title">Your order:</div>
             <div className="cart__list">
                 <div className="cart__item">
                     <img src="https://static.1000.menu/img/content/21458/-salat-cezar-s-kr-salat-cezar-s-krevetkami-s-maionezom_1501173720_1_max.jpg" className="cart__item-img" alt="Cesar salad"></img>

@@ -11,8 +11,8 @@
     }
     &__title {
         font-size: 22px;
-        margin-bottom: 20px;
         text-align: center;
+        margin-left: 10px;
     }
     &__img {
         width: calc(100% + 40px);
@@ -38,5 +38,11 @@
         color: #fff;
         font-size: 16px;
         cursor: pointer;
+    }
+
+    &__header {
+        display: flex;
+        align-items:center;
+        padding-bottom: 10px;
     }
 }
