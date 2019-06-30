@@ -25,7 +25,7 @@ const MenuListItem = ({ menuItem }) => {
     return (
         <li className="menu__item">
             <div className='menu__header'>
-                <img src={icon} alt='salad'/>
+                <img src={icon} alt='salad' />
                 <div className="menu__title">{title}</div>
             </div>
             <img className="menu__img" src={url} alt={title}></img>
