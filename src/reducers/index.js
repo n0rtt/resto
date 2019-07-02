@@ -2,12 +2,10 @@ const initialState = {
     menu: [],
     loading: true,
     error: false,
-    items: [],
-    total: 0
+    items: []
 }
 
 const reducer = (state = initialState, action) => {
-    console.log(state)
     switch (action.type) {
         case 'MENU_LOADED':
             return {
@@ -25,6 +23,9 @@ const reducer = (state = initialState, action) => {
 
         case 'MENU_ERROR':
             return {
+                ...state,
+                menu: [],
+                loading: false,
                 error: true
             }
 
@@ -53,7 +54,7 @@ const reducer = (state = initialState, action) => {
                 }
 
                 newItems = [
-                    ...state.items, 
+                    ...state.items,
                     newItem
                 ]
             }
