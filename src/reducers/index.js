@@ -2,7 +2,8 @@ const initialState = {
     menu: [],
     loading: true,
     error: false,
-    items: []
+    items: [],
+    total: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -28,34 +29,50 @@ const reducer = (state = initialState, action) => {
             }
 
         case 'ITEM_ADD_TO_CART':
-            const id = action.payload
-            const item = state.menu.find(item => item.id === id)
-            const newItem = {
-                title: item.title,
-                price: item.price,
-                url: item.url,
-                id: item.id
-            }
 
-            return {
-                ...state,
-                items: [
-                    ...state.items,
+            let newItems = {}
+
+            const id = action.payload
+            const itemIndex = state.items.findIndex(item => item.id === id)
+
+            if (itemIndex !== -1) {
+
+                newItems = state.items.slice()
+                newItems[itemIndex].quantity++
+
+            } else {
+
+                const item = state.menu.find(item => item.id === id)
+
+                const newItem = {
+                    id: item.id,
+                    url: item.url,
+                    title: item.title,
+                    price: item.price,
+                    quantity: 1
+                }
+
+                newItems = [
+                    ...state.items, 
                     newItem
                 ]
             }
 
-        case 'ITEM_REMOVE_FROM_CART':
-            const index = action.payload
-            const itemIndex = state.items.findIndex(item => item.id === index)
             return {
                 ...state,
-                items: [
-                    ...state.items.slice(0, itemIndex),
-                    ...state.items.slice(itemIndex + 1)
-                ]
+                items: newItems
             }
-        
+
+        case 'ITEM_REMOVE_FROM_CART':
+
+            const indexToRemove = action.payload
+            const itemsLeft = state.items.filter(item => item.id !== indexToRemove)
+
+            return {
+                ...state,
+                items: itemsLeft
+            }
+
         default:
             return state
     }
